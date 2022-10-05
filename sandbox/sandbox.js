@@ -1,5 +1,10 @@
+let tile;
+let player;
+
 // State objects
 let gameState = {
+    currentTurn: 0,
+    
     boardState: [
         "",
         "",
@@ -12,7 +17,7 @@ let gameState = {
         "",
     ],
 
-    playerTurn: {
+    player: {
         0: init,
         1: "X",
         2: "O",
@@ -35,6 +40,28 @@ function init() {
     
 };
 
-function updateTile() {
-    
+function updateTile(tile) {
+    if(gameState.currentTurn === 0) {
+        console.log("Start the game!");
+    } else if(gameState.currentTurn % 2 === 1) {
+        gameState.boardState[tile] = gameState.player[1];
+    } else {
+        gameState.boardState[tile] = gameState.player[2];
+    }
+    gameState.currentTurn++;
+};
+
+function gameEnd() {
+
+};
+
+function clearBoard() {
+    gameState.boardState = ["", "", "", "", "", "", "", "", "",];
+    gameState.currentTurn = 1;
+    gameState.player = 1;
 }
+
+function changeTurn() {
+
+}
+
