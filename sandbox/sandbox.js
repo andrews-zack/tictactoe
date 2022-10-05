@@ -1,15 +1,24 @@
 // State objects
-let boardState = [
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-];
+let gameState = {
+    boardState: [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+    ],
+
+    playerTurn: {
+        0: init,
+        1: "X",
+        2: "O",
+        3: gameEnd,
+    },
+}
 
 let winConditions = [
     [0,1,2],
@@ -22,13 +31,10 @@ let winConditions = [
     [2,4,6],
 ];
 
-let playerTurn = {
-    0: init,
-    1: "X",
-    2: "O",
-    3: gameEnd,
-};
-
 function init() {
-
+    
 };
+
+function updateTile() {
+    
+}
