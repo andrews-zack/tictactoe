@@ -4,7 +4,7 @@ let player;
 
 // State objects
 let gS /*gameState*/= {
-    currentTurn: 0,
+    currentTurn: 1,
     
     bS/*boardState*/: [
         "",
@@ -55,6 +55,9 @@ body.addEventListener('click', e => {
     if (e.target.matches('button')) {
         updateTile(e.target.id)
     }
+    // body.removeEventListener('click', e => {
+    //     console.log("removed");
+    // })
 })
 
 
@@ -65,21 +68,20 @@ function init() {
 };
 
 function updateTile(tile) {
-    if(gS.currentTurn === 0) {
+    /*if(gS.currentTurn === 0) {
         console.log("Start the game!");
-    } else if(gS.currentTurn % 2 === 1) {
+    } else*/ if(gS.currentTurn % 2 === 1) {
         gS.bS[tile] = gS.player[1];
-        buttons[tile].textContent = gS.player[1];
+        buttons[tile].textContent = gS.bS[tile];
     } else {
         gS.bS[tile] = gS.player[2];
-        buttons[tile].textContent = gS.player[2];
+        buttons[tile].textContent = gS.bS[tile];
     }
     checkWin();
     gS.currentTurn++;
 };
 
-// function updateBoard() {
-// }
+
 
 function checkWin() {
     winConditions = [
@@ -92,10 +94,10 @@ function checkWin() {
         `${gS.bS[0]}${gS.bS[4]}${gS.bS[8]}`,
         `${gS.bS[6]}${gS.bS[4]}${gS.bS[6]}`
     ];
-    if (winConditions.includes('XXX' || 'OOO')) {
+    if (winConditions.includes('XXX')) {
         gameEnd();
-    } else {
-        changeTurn();
+    } else if (winConditions.includes('OOO')) {
+        gameEnd();
     }
 };
 
@@ -104,9 +106,12 @@ function gameEnd() {
 };
 
 function clearBoard() {
-    gameState.boardState = ["", "", "", "", "", "", "", "", "",];
-    gameState.currentTurn = 1;
-    gameState.player = 1;
+    gS.bS = ["", "", "", "", "", "", "", "", "",];
+    gS.currentTurn = 1;
+    gS.player = 1;
+    for (let i = 0; i < 9; i++) {
+        buttons[i].textContent = ''
+    }
 };
 
 function changeTurn() {
