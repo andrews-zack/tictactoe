@@ -144,9 +144,3 @@ function clearBoard() {
     whoTurn.textContent = `It's ${gS.player[1]}'s turn`
 };
 
-// function changeTurn() {
-//     console.log("NEXT TURN");
-// };
-
-
-
