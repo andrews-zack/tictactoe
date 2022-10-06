@@ -25,9 +25,16 @@ let gS /*gameState*/= {
         3: gameEnd,
     },
 }
+let resetBtn = document.createElement('button')
+resetBtn.classList = 'button text-center w-25'
+resetBtn.textContent = 'RESET GAME'
+resetBtn.id = 'newGame'
+body.appendChild(resetBtn);
+let newGame = document.getElementById('newGame')
+
 
 let container = document.createElement('div');
-container.classList = 'container';
+container.classList = 'container mt-5';
 body.appendChild(container);
 
 let row = document.createElement('div');
@@ -49,19 +56,12 @@ for (i=0; i < 9; i++) {
     btn.disabled = false
     square.appendChild(btn);
 }
-let container = document.createElement('div');
-container.classList = 'container';
-body.appendChild(container);
 
-let row = document.createElement('div');
-row.classList = 'row vh-100 align-content-center';
-row.id = 'row'
-container.appendChild(row);
-
-let resetBtn = document.createElement('button')
-resetBtn.classList = 'button text-center'
-resetBtn.textContent = 'RESET GAME'
-body.appendChild(resetBtn);
+// let resetBtn = document.createElement('button')
+// resetBtn.classList = 'button text-center w-25'
+// resetBtn.textContent = 'RESET GAME'
+// body.appendChild(resetBtn);
+// resetBtn.addEventListener('click', clearBoard())
 
 const buttons = document.getElementsByClassName('button')
 
@@ -135,4 +135,7 @@ function clearBoard() {
 function changeTurn() {
     console.log("NEXT TURN");
 };
+
+resetBtn.addEventListener('click', clearBoard())
+
 
