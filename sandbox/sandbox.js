@@ -1,3 +1,4 @@
+let body = document.getElementById('app')
 let tile;
 let player;
 
@@ -25,6 +26,32 @@ let gS /*gameState*/= {
     },
 }
 
+let container = document.createElement('div');
+container.classList = 'container';
+body.appendChild(container);
+
+let row = document.createElement('div');
+row.classList = 'row vh-100 align-content-center';
+row.id = 'row'
+container.appendChild(row);
+
+for (i=0; i < 9; i++) {
+    let square = document.createElement('div');
+    square.classList = 'col-4 h-25 text-center border border-success border-3 tile';
+    square.id = i;
+    row.appendChild(square);
+    // square.textContent = 'Tile ' + i
+}
+
+const tiles = document.getElementById('row');
+
+tiles.addEventListener('click', e => {
+    if(e.target.className === 'tile') {
+        console.log(e.target.id)
+    }
+})
+
+
 let winConditions = [];
 
 function init() {
@@ -41,6 +68,10 @@ function updateTile(tile) {
     }
     gS.currentTurn++;
 };
+
+function updateBoard() {
+
+}
 
 function checkWin() {
     winConditions = [
