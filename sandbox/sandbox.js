@@ -46,20 +46,40 @@ for (i=0; i < 9; i++) {
     let btn = document.createElement('button');
     btn.classList = 'button h-100 w-100';
     btn.id = i;
+    btn.disabled = false
     square.appendChild(btn);
 }
+let container = document.createElement('div');
+container.classList = 'container';
+body.appendChild(container);
+
+let row = document.createElement('div');
+row.classList = 'row vh-100 align-content-center';
+row.id = 'row'
+container.appendChild(row);
+
+let resetBtn = document.createElement('button')
+resetBtn.classList = 'button text-center'
+resetBtn.textContent = 'RESET GAME'
+body.appendChild(resetBtn);
 
 const buttons = document.getElementsByClassName('button')
 
 body.addEventListener('click', e => {
     if (e.target.matches('button')) {
         updateTile(e.target.id)
+        buttons[e.target.id].disabled = true
     }
     // body.removeEventListener('click', e => {
     //     console.log("removed");
     // })
 })
 
+body.removeEventListener('click', e => {
+    if(e.target.matches('button')) {
+
+    }
+})
 
 let winConditions = [];
 
@@ -92,11 +112,9 @@ function checkWin() {
         `${gS.bS[1]}${gS.bS[4]}${gS.bS[7]}`,
         `${gS.bS[2]}${gS.bS[5]}${gS.bS[8]}`,
         `${gS.bS[0]}${gS.bS[4]}${gS.bS[8]}`,
-        `${gS.bS[6]}${gS.bS[4]}${gS.bS[6]}`
+        `${gS.bS[2]}${gS.bS[4]}${gS.bS[6]}`
     ];
-    if (winConditions.includes('XXX')) {
-        gameEnd();
-    } else if (winConditions.includes('OOO')) {
+    if (winConditions.includes('XXX') || winConditions.includes('OOO')) {
         gameEnd();
     }
 };
@@ -108,9 +126,9 @@ function gameEnd() {
 function clearBoard() {
     gS.bS = ["", "", "", "", "", "", "", "", "",];
     gS.currentTurn = 1;
-    gS.player = 1;
     for (let i = 0; i < 9; i++) {
         buttons[i].textContent = ''
+        buttons[i].disabled = false
     }
 };
 
