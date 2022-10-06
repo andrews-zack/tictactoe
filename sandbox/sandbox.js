@@ -1,6 +1,4 @@
 let body = document.getElementById('app')
-let tile;
-let player;
 
 // State objects
 let gS /*gameState*/= {
@@ -19,10 +17,10 @@ let gS /*gameState*/= {
     ],
 
     player: {
-        0: init,
+        // 0: init,
         1: "X",
         2: "O",
-        3: gameEnd,
+        // 3: gameEnd,
     },
 }
 
@@ -38,6 +36,7 @@ container2.appendChild(resetBtn);
 resetBtn.addEventListener('click', clearBoard)
 
 
+
 let container3 = document.createElement('div');
 container3.classList = 'container';
 body.appendChild(container3);
@@ -46,6 +45,9 @@ let whoTurn = document.createElement('h3');
 whoTurn.textContent = `It's ${gS.player[1]}'s turn`;
 whoTurn.classList = 'text-center'
 container3.appendChild(whoTurn)
+
+
+
 
 let container = document.createElement('div');
 container.classList = 'container mt-5';
