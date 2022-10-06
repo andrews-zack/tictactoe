@@ -36,7 +36,7 @@ row.id = 'row'
 container.appendChild(row);
 
 let whoTurn = document.createElement('h4');
-whoTurn.textContent = `It's ${}`
+whoTurn.textContent = `It's `
 
 for (i=0; i < 9; i++) {
     let square = document.createElement('div');
