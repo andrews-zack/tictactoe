@@ -35,19 +35,25 @@ row.classList = 'row vh-100 align-content-center';
 row.id = 'row'
 container.appendChild(row);
 
+let whoTurn = document.createElement('h4');
+whoTurn.textContent = `It's ${}`
+
 for (i=0; i < 9; i++) {
     let square = document.createElement('div');
     square.classList = 'col-4 h-25 text-center border border-success border-3 tile';
     square.id = i;
     row.appendChild(square);
-    // square.textContent = 'Tile ' + i
+    let btn = document.createElement('button');
+    btn.classList = 'button h-100 w-100';
+    btn.id = i;
+    square.appendChild(btn);
 }
 
-const tiles = document.getElementById('row');
+const buttons = document.getElementsByClassName('button')
 
-tiles.addEventListener('click', e => {
-    if(e.target.className === 'tile') {
-        console.log(e.target.id)
+body.addEventListener('click', e => {
+    if (e.target.matches('button')) {
+        updateTile(e.target.id)
     }
 })
 
@@ -63,15 +69,17 @@ function updateTile(tile) {
         console.log("Start the game!");
     } else if(gS.currentTurn % 2 === 1) {
         gS.bS[tile] = gS.player[1];
+        buttons[tile].textContent = gS.player[1];
     } else {
         gS.bS[tile] = gS.player[2];
+        buttons[tile].textContent = gS.player[2];
     }
+    checkWin();
     gS.currentTurn++;
 };
 
-function updateBoard() {
-
-}
+// function updateBoard() {
+// }
 
 function checkWin() {
     winConditions = [
@@ -84,7 +92,7 @@ function checkWin() {
         `${gS.bS[0]}${gS.bS[4]}${gS.bS[8]}`,
         `${gS.bS[6]}${gS.bS[4]}${gS.bS[6]}`
     ];
-    if (!!winConditions.find((a) => a === 'XXX' || 'OOO')) {
+    if (winConditions.includes('XXX' || 'OOO')) {
         gameEnd();
     } else {
         changeTurn();
