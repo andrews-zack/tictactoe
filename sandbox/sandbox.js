@@ -1,4 +1,5 @@
 let body = document.getElementById('app')
+let winConditions = [];
 
 // State objects
 let gS /*gameState*/= {
@@ -24,8 +25,21 @@ let gS /*gameState*/= {
     },
 }
 
+
+
+
+let container3 = document.createElement('div');
+container3.classList = 'container mt-5';
+body.appendChild(container3);
+
+let whoTurn = document.createElement('h3');
+whoTurn.textContent = `It's ${gS.player[1]}'s turn`;
+whoTurn.classList = 'text-center'
+container3.appendChild(whoTurn)
+
+
 let container2 = document.createElement('div');
-container2.classList = 'container mt-5';
+container2.classList = 'container';
 body.appendChild(container2);
 
 let resetBtn = document.createElement('p')
@@ -36,25 +50,12 @@ container2.appendChild(resetBtn);
 resetBtn.addEventListener('click', clearBoard)
 
 
-
-let container3 = document.createElement('div');
-container3.classList = 'container';
-body.appendChild(container3);
-
-let whoTurn = document.createElement('h3');
-whoTurn.textContent = `It's ${gS.player[1]}'s turn`;
-whoTurn.classList = 'text-center'
-container3.appendChild(whoTurn)
-
-
-
-
 let container = document.createElement('div');
-container.classList = 'container mt-5';
+container.classList = 'container';
 body.appendChild(container);
 
 let row = document.createElement('div');
-row.classList = 'row vh-100 align-content-center';
+row.classList = 'row vh-100 align-content-center px-5 mx-5';
 row.id = 'row'
 container.appendChild(row);
 
@@ -64,11 +65,12 @@ for (i=0; i < 9; i++) {
     square.id = i;
     row.appendChild(square);
     let btn = document.createElement('button');
-    btn.classList = 'button h-100 w-100';
+    btn.classList = 'button h-100 w-100 border-0';
     btn.id = i;
     btn.disabled = false
     square.appendChild(btn);
 }
+
 
 const buttons = document.getElementsByClassName('button')
 
@@ -79,11 +81,11 @@ body.addEventListener('click', e => {
     }
 })
 
-let winConditions = [];
 
-function init() {
+
+// function init() {
     
-};
+// };
 
 function updateTile(tile) {
     if(gS.currentTurn % 2 === 1) {
@@ -95,8 +97,8 @@ function updateTile(tile) {
         buttons[tile].textContent = gS.bS[tile];
         whoTurn.textContent = `It's ${gS.player[1]}'s turn`
     }
-    checkWin();
     gS.currentTurn++;
+    checkWin();
 };
 
 
@@ -114,15 +116,19 @@ function checkWin() {
     ];
     if (winConditions.includes('XXX') || winConditions.includes('OOO')) {
         gameEnd();
+    } else if (gS.currentTurn === 10) {
+        gameEnd();
     }
 };
 
 function gameEnd() {
-    console.log("GAME OVER");
-    if (gS.currentTurn % 2 === 1) {
+    if(gS.currentTurn === 10){
+        whoTurn.textContent = "IT'S A TIE"
+    } else if (gS.currentTurn % 2 === 1) {
     whoTurn.textContent = `${gS.player[1]} WINS`
-    }   else {whoTurn.textContent = `${gS.player[2]} WINS`
-        }
+    } else/*(gS.currentTurn % 2 === 0)*/ {
+        whoTurn.textContent = `${gS.player[2]} WINS`
+    } /*else {whoTurn.textContent = "IT'S A TIE"};*/
     for (let i = 0; i < 9; i++) {
         buttons[i].disabled = true;
     }
@@ -137,10 +143,4 @@ function clearBoard() {
     }
     whoTurn.textContent = `It's ${gS.player[1]}'s turn`
 };
-
-// function changeTurn() {
-//     console.log("NEXT TURN");
-// };
-
-
 
