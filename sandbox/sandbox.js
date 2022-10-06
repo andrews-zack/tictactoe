@@ -25,13 +25,13 @@ let gS /*gameState*/= {
         3: gameEnd,
     },
 }
+
 let resetBtn = document.createElement('button')
 resetBtn.classList = 'button text-center w-25'
 resetBtn.textContent = 'RESET GAME'
 resetBtn.id = 'newGame'
 body.appendChild(resetBtn);
 let newGame = document.getElementById('newGame')
-
 
 let container = document.createElement('div');
 container.classList = 'container mt-5';
@@ -70,15 +70,6 @@ body.addEventListener('click', e => {
         updateTile(e.target.id)
         buttons[e.target.id].disabled = true
     }
-    // body.removeEventListener('click', e => {
-    //     console.log("removed");
-    // })
-})
-
-body.removeEventListener('click', e => {
-    if(e.target.matches('button')) {
-
-    }
 })
 
 let winConditions = [];
@@ -88,9 +79,7 @@ function init() {
 };
 
 function updateTile(tile) {
-    /*if(gS.currentTurn === 0) {
-        console.log("Start the game!");
-    } else*/ if(gS.currentTurn % 2 === 1) {
+    if(gS.currentTurn % 2 === 1) {
         gS.bS[tile] = gS.player[1];
         buttons[tile].textContent = gS.bS[tile];
     } else {
