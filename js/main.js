@@ -26,66 +26,7 @@ let gS /*gameState*/= {
 }
 
 
-
-
-let container3 = document.createElement('div');
-container3.classList = 'container mt-5';
-body.appendChild(container3);
-
-let whoTurn = document.createElement('h3');
-whoTurn.textContent = `It's ${gS.player[1]}'s turn`;
-whoTurn.classList = 'text-center'
-container3.appendChild(whoTurn)
-
-
-let container2 = document.createElement('div');
-container2.classList = 'container';
-body.appendChild(container2);
-
-let resetBtn = document.createElement('p')
-resetBtn.classList = 'bg-dark text-light text-center w-25'
-resetBtn.textContent = 'RESET GAME'
-resetBtn.id = 'newGame'
-container2.appendChild(resetBtn);
-resetBtn.addEventListener('click', clearBoard)
-
-
-let container = document.createElement('div');
-container.classList = 'container';
-body.appendChild(container);
-
-let row = document.createElement('div');
-row.classList = 'row vh-100 align-content-center';
-row.id = 'row'
-container.appendChild(row);
-
-for (i=0; i < 9; i++) {
-    let square = document.createElement('div');
-    square.classList = 'col-4 h-25 text-center border border-success border-3 tile';
-    square.id = i;
-    row.appendChild(square);
-    let btn = document.createElement('button');
-    btn.classList = 'button h-100 w-100 border-0';
-    btn.id = i;
-    btn.disabled = false
-    square.appendChild(btn);
-}
-
-
 const buttons = document.getElementsByClassName('button')
-
-body.addEventListener('click', e => {
-    if (e.target.matches('button')) {
-        updateTile(e.target.id)
-        buttons[e.target.id].disabled = true
-    }
-})
-
-
-
-// function init() {
-    
-// };
 
 function updateTile(tile) {
     if(gS.currentTurn % 2 === 1) {
@@ -143,3 +84,43 @@ function clearBoard() {
     }
     whoTurn.textContent = `It's ${gS.player[1]}'s turn`
 };
+
+function generateElem(newElem, elemType, bootClass, elemId, elemText, parentDiv) {
+    newElem = document.createElement(elemType);
+    newElem.classList = bootClass;
+    newElem.id = elemId;
+    newElem.textContent = elemText;
+    parentDiv.appendChild(newElem);
+    window[newElem] = document.getElementById(newElem);
+};
+
+function init() {
+    generateElem('container3', 'div', 'container mt-5', null, null, body);
+    generateElem('whoTurn', 'h3', 'text-center', 'null', `It's ${gS.player[1]}'s turn`, container3);
+    generateElem('container2', 'div', 'container', null, null, body);
+    generateElem('resetBtn', 'p', 'bg-dark text-light text-center w-25', 'newGame','RESET GAME', container2);
+    generateElem('container', 'div', 'container', null, null, body);
+    generateElem('row', 'div', 'row vh-75 align-content-center', 'row', null, container);
+    resetBtn.addEventListener('click', clearBoard);
+    for (i=0; i < 9; i++) {
+        let square = document.createElement('div');
+        square.classList = 'col-4 h-25 text-center border border-success border-3 tile';
+        square.id = i;
+        row.appendChild(square);
+        let btn = document.createElement('button');
+        btn.classList = 'button h-100 w-100 border-0';
+        btn.id = i;
+        btn.disabled = false
+        square.appendChild(btn);
+    };
+    body.addEventListener('click', e => {
+        if (e.target.matches('button')) {
+            updateTile(e.target.id)
+            buttons[e.target.id].disabled = true
+        }
+    })
+}
+
+
+init();
+
