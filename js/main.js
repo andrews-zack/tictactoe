@@ -55,7 +55,7 @@ container.classList = 'container';
 body.appendChild(container);
 
 let row = document.createElement('div');
-row.classList = 'row vh-100 align-content-center px-5 mx-5';
+row.classList = 'row vh-100 align-content-center';
 row.id = 'row'
 container.appendChild(row);
 
@@ -65,7 +65,7 @@ for (i=0; i < 9; i++) {
     square.id = i;
     row.appendChild(square);
     let btn = document.createElement('button');
-    btn.classList = 'button h-100 w-100 border-0';
+    btn.classList = 'button h-100 w-100 border-0 fs-1';
     btn.id = i;
     btn.disabled = false
     square.appendChild(btn);
