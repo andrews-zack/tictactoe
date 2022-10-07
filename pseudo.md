@@ -18,3 +18,6 @@
     - State 3 is when the game is over, whether in a tie or one player wins
 * An object of the game state will update with which player selects which tile
 * That state will be checked against an object of winning conditions to determine whether the game should be over or continue playing
+
+![pseudocode notes 1](/img/pseudo-notes1)
+![pseudocode notes 2](/img/pseudo-notes2)
