@@ -65,7 +65,7 @@ for (i=0; i < 9; i++) {
     square.id = i;
     row.appendChild(square);
     let btn = document.createElement('button');
-    btn.classList = 'button h-100 w-100 border-0 fs-1';
+    btn.classList = 'button h-100 w-100 border-0';
     btn.id = i;
     btn.disabled = false
     square.appendChild(btn);
