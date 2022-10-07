@@ -95,12 +95,6 @@ function generateElem(newElem, elemType, bootClass, elemId, elemText, parentDiv)
 };
 
 function init() {
-    generateElem('container3', 'div', 'container mt-5', null, null, body);
-    generateElem('container2', 'div', 'container', null, null, body);
-    generateElem('container', 'div', 'container', null, null, body);
-    generateElem('whoTurn', 'h3', 'text-center', 'null', `It's ${gS.player[1]}'s turn`, container3);
-    generateElem('resetBtn', 'p', 'bg-dark text-light text-center w-25', 'newGame','RESET GAME', container2);
-    generateElem('row', 'div', 'row vh-75 align-content-center', 'row', null, container);
     resetBtn.addEventListener('click', clearBoard);
     for (i=0; i < 9; i++) {
         let square = document.createElement('div');
@@ -121,6 +115,14 @@ function init() {
     })
 }
 
+function makePage() {
+    generateElem('container3', 'div', 'container mt-5', null, null, body);
+    generateElem('container2', 'div', 'container', null, null, body);
+    generateElem('container', 'div', 'container', null, null, body);
+    generateElem('whoTurn', 'h3', 'text-center', 'null', `It's ${gS.player[1]}'s turn`, container3);
+    generateElem('resetBtn', 'p', 'bg-dark text-light text-center w-25', 'newGame','RESET GAME', container2);
+    generateElem('row', 'div', 'row vh-75 align-content-center', 'row', null, container);
+}
 
 init();
 
