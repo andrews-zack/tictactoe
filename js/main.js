@@ -95,6 +95,7 @@ function generateElem(newElem, elemType, bootClass, elemId, elemText, parentDiv)
 };
 
 function init() {
+    makePage();
     resetBtn.addEventListener('click', clearBoard);
     for (i=0; i < 9; i++) {
         let square = document.createElement('div');
